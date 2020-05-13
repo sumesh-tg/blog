@@ -7,7 +7,7 @@ import { Component,OnInit  } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'shopping-client-poc';
+  title = 'Aeons Study Circle';
   ngOnInit() { 
     $(document).ready(function () {
       "use strict";

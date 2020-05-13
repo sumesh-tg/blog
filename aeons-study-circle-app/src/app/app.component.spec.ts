@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'shopping-client'`, () => {
+  it(`should have as title 'Aeons Study Circle Blog'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('shopping-client');
+    expect(app.title).toEqual('Aeons Study Circle Blog');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('shopping-client app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('Aeons Study Circle Blog app is running!');
   });
 });

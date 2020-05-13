@@ -9,10 +9,10 @@ import { AddVendorComponent } from './components/dashboard/forms/add-vendor/add-
 
 
 const routes: Routes = [
-  {path:"" , component :LoginComponent},
+  {path:"",redirectTo:"/dashboard/blog",pathMatch:"full"},
   {path:"dashboard" , component :DashboardComponent,children:[
-    {path:"",redirectTo:"/dashboard/home",pathMatch:"full"},
-    {path:'home',component:VendorListComponent},
+    {path:"",redirectTo:"/dashboard/blog",pathMatch:"full"},
+    {path:'blog',component:VendorListComponent},
     {path:'features',component:FeaturesListComponent},
     {path:'plan',component:PlanListComponent},
     {path:'add-vendor',component:AddVendorComponent},
