@@ -64,6 +64,91 @@
                         </tr>
                     </tbody>
                 </table>
+                <input type="file"
+                id="file"
+                #userPhoto
+                (change)="onFileSelected($event)"
+                name="image"
+                autocomplete="off"
+                />
+               
+                <input type="file"
+                id="uploadFile"
+                #userPhoto
+                (change)="handleFileInput($event.target.files)"
+                name="logo"
+                autocomplete="off"
+                />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Vendor List</h5>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem
+                    Ipsum is simply dummy text of the printing and typesetting industry.</p>
+
+                <table class="table">
+                    <caption>List of users</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                <div class="custom-control custom-checkbox form-group">
+                                    <input type="checkbox" class="custom-control-input" id="mail1" [(ngModel)]="selectedAllChkBox" (change)="selectAllVendors();">
+                                    <label class="custom-control-label" for="mail1"></label>
+                                </div>
+                            </th>
+                            <th scope="col">logo</th>
+                            <th scope="col">Name</th>
+
+                            <th scope="col">Plan</th>
+
+                            <th scope="col">Color</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let vendor of vendorsList">
+                            <td>
+                                <div class="custom-control custom-checkbox form-group">
+                                    <input type="checkbox" class="custom-control-input" id="{{vendor.id}}" [(ngModel)]="vendor.selected">
+                                    <label class="custom-control-label" for="{{vendor.id}}"></label>
+                                </div>
+                            </td>
+                            <th scope="row"><img src="{{baseUrl+vendor.logoImg[0].url}}" width="100"></th>
+
+                            <td>{{vendor.name}} <br>
+                                {{vendor.email}}<br>
+                                {{vendor.phone}}<br>
+                                {{vendor.domain}}
+                            </td>
+
+                            <td>{{ findPlan(vendor.planId) }}</td>
+
+                            <td><div class="p-3 mb-2 text-white" [ngStyle]="{'background-color':vendor.themeColor}">{{vendor.themeColor}}</div></td>
+                            <td>{{vendor.uniqueKey}}</td>
+                            <td [ngClass]="{'text-success': vendor.statusId === 1, 'text-danger':vendor.statusId === 2 }">{{findStatus(vendor.statusId)}}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Action
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" (click)="deactivateVendor(vendor)">Activate/De-activate</a>
+                                        <a class="dropdown-item"(click)="deleteVendor(vendor)">Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

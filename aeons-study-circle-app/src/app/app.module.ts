@@ -13,16 +13,23 @@ import { AddFeatureComponent } from './components/dashboard/forms/add-feature/ad
 import { VendorListComponent } from './components/dashboard/body/vendor-list/vendor-list.component';
 import { FeaturesListComponent } from './components/dashboard/body/features-list/features-list.component';
 import { PlanListComponent } from './components/dashboard/body/plan-list/plan-list.component';
-import {HttpClientModule} from '@angular/common/http';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
- 
+
 import { ToastrModule } from 'ngx-toastr';
 import { MustMatchDirective } from './shared/validators/must-match.directive';
 import { ConfirmationDialogComponent } from './shared/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { ConfirmationDialogService } from './shared/dialogs/confirmation-dialog/confirmation-dialog.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import { BlogListComponent } from './components/dashboard/body/blog-list/blog-list.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { AddPostComponent } from './components/dashboard/forms/add-post/add-post.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { BlogPostComponent } from './components/dashboard/body/blog-post/blog-post.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,16 +44,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FeaturesListComponent,
     PlanListComponent,
     MustMatchDirective,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    BlogListComponent,
+    AddPostComponent,
+    BlogPostComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     ToastrModule.forRoot(),
-     NgbModule
+    NgbModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    NgxPaginationModule,
+    CKEditorModule
   ],
   providers: [
     ConfirmationDialogService

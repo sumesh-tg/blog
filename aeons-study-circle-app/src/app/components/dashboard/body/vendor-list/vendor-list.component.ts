@@ -4,6 +4,10 @@ import { AppConstants } from 'src/app/shared/AppConstants';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmationDialogService } from 'src/app/shared/dialogs/confirmation-dialog/confirmation-dialog.service';
 import { VendorModel } from 'src/app/models/IVendorModel';
+import { PostService } from 'src/app/services/post.service';
+import { Post } from 'src/app/models/post.model';
+import {VendorUtils} from 'src/app/shared/util/VendorUtils';
+import { UploadFileToFireStorageService } from 'src/app/services/upload-file-to-fire-storage.service';
 
 @Component({
   selector: 'app-vendor-list',
@@ -13,8 +17,11 @@ import { VendorModel } from 'src/app/models/IVendorModel';
 export class VendorListComponent implements OnInit {
   public vendorsList: VendorModel[] = [];
   baseUrl = AppConstants.SERVER_BASE_URL;
-  selectedAllChkBox:any;
-  constructor(private vendorService: VendorService, private toastr: ToastrService, private confirmationDialogService: ConfirmationDialogService) { }
+  selectedAllChkBox: any;
+  blogImage=null;
+  postsArray: Post[];
+  constructor(private vendorService: VendorService, private toastr: ToastrService, private confirmationDialogService: ConfirmationDialogService
+    , private postService: PostService,private uploadFileToFireStorageService:UploadFileToFireStorageService) { }
 
   ngOnInit(): void {
     this.vendorService.getVendorsList().subscribe(data => {
@@ -25,6 +32,21 @@ export class VendorListComponent implements OnInit {
       })
     });
     console.log("test data fetched ::", this.vendorsList);
+    // Test firebase data fetch 
+    this.postService.getPosts().subscribe(posts => {
+     this.postsArray = posts.map(e => {
+        // console.log("firedata :: " , e.payload.doc.data());
+        const data = e.payload.doc.data();
+        let id= e.payload.doc.id;
+        return {id, ...(data as Object)} as Post;
+      });
+      console.log("Firedata ::: ",this.postsArray);
+    });
+    
+  let values=  VendorUtils.makeRandom(5);
+    var postPOjo:Post={createdDate:new Date(),description:VendorUtils.makeRandom(50),expiryDate:new Date(),id:VendorUtils.makeRandom(5),imageUrl:"",modifiedDate:new Date(),subTitle:VendorUtils.makeRandom(15),title:VendorUtils.makeRandom(50),detailedDescription:""};
+ //   this.postService.createPost(postPOjo);
+
   }
   findPlan(planId: number) {
     var planName;
@@ -73,5 +95,14 @@ export class VendorListComponent implements OnInit {
     this.vendorsList.forEach(vendor => {
       vendor.selected = this.selectedAllChkBox;
     });
+  }
+  onFileSelected(event){
+    this.uploadFileToFireStorageService.uploadFileSelected(event);
+  }
+  handleFileInput(files: FileList) {
+    this.blogImage = files.item(0);
+   this.uploadFileToFireStorageService.uploadFileToFireStorage(this.blogImage).subscribe(url=>{
+     console.log(url);
+   });
   }
 }
