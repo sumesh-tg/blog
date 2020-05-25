@@ -30,6 +30,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AddPostComponent } from './components/dashboard/forms/add-post/add-post.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { BlogPostComponent } from './components/dashboard/body/blog-post/blog-post.component';
+import { RightSideBarComponent } from './components/dashboard/body/blog-post/right-side-bar/right-side-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,8 @@ import { BlogPostComponent } from './components/dashboard/body/blog-post/blog-po
     ConfirmationDialogComponent,
     BlogListComponent,
     AddPostComponent,
-    BlogPostComponent
+    BlogPostComponent,
+    RightSideBarComponent
   ],
   imports: [
     BrowserModule,

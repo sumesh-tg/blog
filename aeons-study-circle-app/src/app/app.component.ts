@@ -46,13 +46,18 @@ export class AppComponent {
           if (e.length) return o.hasClass("open") ? (e.slideUp(200), o.removeClass("open")) : (a.length && ($(".horizontal-bar-menu > ul > li.open > ul").slideUp(200), a.removeClass("open")), e.slideDown(200), o.addClass("open")), !1
       }), "dark" == localStorage.getItem("theme") && $("body").addClass("dark-theme"), "dark" != localStorage.getItem("theme") && $("body").hasClass("dark-theme") && localStorage.setItem("theme", "dark"), $("#dark-theme-toggle").on("click", function () {
           $("body").toggleClass("dark-theme"), $("body").hasClass("dark-theme") ? localStorage.setItem("theme", "dark") : localStorage.setItem("theme", "light"), event.preventDefault()
-      }), $(".slimscroll").slimScroll({
-          wheelStep: 5,
-          touchScrollStep: 50,
-          opacity: 0
-      }).mouseover(function () {
-          $(this).next(".slimScrollBar").css("opacity", .4)
-      }), $('[data-toggle="popover"]').popover(), $('[data-toggle="tooltip"]').tooltip(), window.addEventListener("load", function () {
+      }),
+    //    $(".slimscroll").slimScroll({
+    //       wheelStep: 5,
+    //       touchScrollStep: 50,
+    //       opacity: 0
+    //   }).mouseover(function () {
+    //       $(this).next(".slimScrollBar").css("opacity", .4)
+    //   }),
+
+    //   $('[data-toggle="popover"]').popover(),
+    //   $('[data-toggle="tooltip"]').tooltip(),
+       window.addEventListener("load", function () {
           var e = document.getElementsByClassName("needs-validation");
           Array.prototype.filter.call(e, function (e) {
               e.addEventListener("submit", function (o) {
@@ -60,6 +65,7 @@ export class AppComponent {
               }, !1)
           })
       }, !1)
+      
   }), $(window).on("load", function () {
       setTimeout(function () {
           $("body").addClass("no-loader")
