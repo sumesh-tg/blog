@@ -31,6 +31,9 @@ import { AddPostComponent } from './components/dashboard/forms/add-post/add-post
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { BlogPostComponent } from './components/dashboard/body/blog-post/blog-post.component';
 import { RightSideBarComponent } from './components/dashboard/body/blog-post/right-side-bar/right-side-bar.component';
+import { HomePageComponent } from './components/dashboard/body/home-page/home-page.component';
+import { ContactUsComponent } from './components/dashboard/body/contact-us/contact-us.component';
+import { DeletePostComponent } from './components/dashboard/forms/delete-post/delete-post.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +52,10 @@ import { RightSideBarComponent } from './components/dashboard/body/blog-post/rig
     BlogListComponent,
     AddPostComponent,
     BlogPostComponent,
-    RightSideBarComponent
+    RightSideBarComponent,
+    HomePageComponent,
+    ContactUsComponent,
+    DeletePostComponent
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "shopping-client": {
+    "aeons-study-circle": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/shopping-client",
+            "outputPath": "dist/aeons-study-circle",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -70,18 +70,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "shopping-client:build"
+            "browserTarget": "aeons-study-circle:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "shopping-client:build:production"
+              "browserTarget": "aeons-study-circle:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "shopping-client:build"
+            "browserTarget": "aeons-study-circle:build"
           }
         },
         "test": {
@@ -118,18 +118,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "shopping-client:serve"
+            "devServerTarget": "aeons-study-circle:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "shopping-client:serve:production"
+              "devServerTarget": "aeons-study-circle:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "shopping-client",
+  "defaultProject": "aeons-study-circle",
   "cli": {
     "analytics": false
   }
