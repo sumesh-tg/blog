@@ -1,0 +1,67 @@
+<div class="row" id="vendorCreation">
+    <div class="col-xl">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Create Blog Post</h5>
+                <p>Create a html rich post.</p>
+                <form name="form" #postForm="ngForm" (ngSubmit)="postForm.form.valid && submitAddPostForm()" novalidate>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4">Title</label>
+                            <input type="text" class="form-control" id="inputEmail4" required minlength="5" placeholder="" [(ngModel)]="postModel.title" name="title" #title="ngModel">
+                            <div *ngIf="postForm.submitted && title.invalid" class="invalid-feedback d-block">
+                                <div *ngIf="title.errors.required">Title is required</div>
+                                <div *ngIf="title.errors.minlength">Minimum length 5 is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4">Sub Title</label>
+                            <input type="text" class="form-control" id="inputEmail4" required minlength="5" placeholder="" [(ngModel)]="postModel.subTitle" name="subTitle" #subTitle="ngModel">
+                            <div *ngIf="postForm.submitted && subTitle.invalid" class="invalid-feedback d-block">
+                                <div *ngIf="subTitle.errors.required">Sub title is required</div>
+                                <div *ngIf="subTitle.errors.minlength">Minimum length 5 is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4">Header image</label>
+                            <input type="File" class="form-control" id="inputEmail4" required placeholder="" (change)="handleFileInput($event.target.files)" [(ngModel)]="postModel.imageUrl" name="headerImage" #headerImage="ngModel">
+                            <div *ngIf="postForm.submitted && headerImage.invalid" class="invalid-feedback d-block">
+                                <div *ngIf="headerImage.errors.required">Header image is required</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4">Expiry Date</label>
+                            <input type="date" class="form-control" id="inputEmail4" placeholder="" required [(ngModel)]="postModel.expiryDate" name="expiryDate" name="expiryDate" #expiryDate="ngModel">
+                            <div *ngIf="postForm.submitted && expiryDate.invalid" class="invalid-feedback d-block">
+                                <div *ngIf="expiryDate.errors.required">Expiry date is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="Editor2">Description</label>
+                            <ckeditor [(ngModel)]="postModel.description" required minlength="50" name="editor1" (change)="onChangeDescription($event)" [editor]="Editor1"  [config]="{ toolbar: [ 'heading', '|', 'bold','italic','colors','numberedList','bulletedList','undo','redo'] }" #description="ngModel"></ckeditor>
+                            <div *ngIf="postForm.submitted && description.invalid" class="invalid-feedback d-block">
+                                <div *ngIf="description.errors.required">Post description is required</div>
+                                <div *ngIf="description.errors.minlength">Minimum length 50 is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="Editor1">Detailed Description</label>
+                            <ckeditor [(ngModel)]="postModel.detailedDescription" required minlength="50" name="editor2" (change)="onChangeDetailedDescription($event)" [editor]="Editor2" #detailedDescription="ngModel"></ckeditor>
+                            <div *ngIf="postForm.submitted && detailedDescription.invalid" class="invalid-feedback d-block">
+                                <div *ngIf="detailedDescription.errors.required">Post description is required</div>
+                                <div *ngIf="detailedDescription.errors.minlength">Minimum length 50 is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary float-right">Submit </button>
+                    <button type="submit" class="btn btn-secondary float-right mr-3">Clear</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

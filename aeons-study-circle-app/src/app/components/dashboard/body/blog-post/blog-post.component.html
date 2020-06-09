@@ -1,0 +1,86 @@
+<div class="jumbotron p-3 p-md-5 text-white rounded bg-primary">
+    <div class="col-md-6 px-0">
+        <h1 class="display-4 font-italic">{{postModel.title}}</h1>
+        <p class="lead my-3" [innerHtml]="postModel.description"></p>
+        <p class="lead mb-0"><a  href="" class="text-white font-weight-bold">Continue
+                reading...</a></p>
+    </div>
+</div>
+
+<div class="row mb-2">
+    <div class="col-md-6">
+        <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-primary">World</strong>
+                <h3 class="mb-0">
+                    <a class="text-dark" href="#">Featured post</a>
+                </h3>
+                <div class="mb-1 text-muted">Nov 12</div>
+                <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to
+                    additional content.</p>
+                <a href="#">Continue reading</a>
+            </div>
+            <img class="card-img-right flex-auto d-none d-md-block" src="https://via.placeholder.com/150"
+                alt="Card image cap">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-success">Design</strong>
+                <h3 class="mb-0">
+                    <a class="text-dark" href="#">Post title</a>
+                </h3>
+                <div class="mb-1 text-muted">Nov 11</div>
+                <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to
+                    additional content.</p>
+                <a href="#blog-post">Continue reading</a>
+            </div>
+            <img class="card-img-right flex-auto d-none d-md-block" src="https://via.placeholder.com/150"
+                alt="Card image cap">
+        </div>
+    </div>
+</div>
+
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-9 blog-main">
+            <h3 class="pb-3 mb-4 font-italic border-bottom">
+                From the Firehose
+            </h3>
+
+            <div class="blog-post" #blogPost>
+                <h2 class="blog-post-title">{{postModel.title}}</h2>
+                <p class="blog-post-meta">{{postModel.createdDate.seconds * 1000 | date:'full'}} by <a
+                        href="#">Jayakuttan</a></p>
+
+                <!-- <p>This blog post shows a few different types of content that's supported and styled with Bootstrap.
+                    Basic typography, images, and code are all supported.</p> -->
+                <hr>
+                <div [innerHTML]="sanitizeTxt(postModel.detailedDescription)"></div>
+            </div><!-- /.blog-post -->
+
+            <nav class="blog-pagination">
+                <a class="btn btn-outline-primary" href="#">Older</a>
+                <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
+            </nav>
+
+        </div><!-- /.blog-main -->
+        <!-- Right side bar component loads here -->
+        <aside class="col-md-3 blog-sidebar">
+            <app-right-side-bar></app-right-side-bar>
+        </aside>
+        
+        <!-- /.blog-sidebar -->
+
+    </div><!-- /.row -->
+
+</main><!-- /.container -->
+<!-- 
+<footer class="blog-footer">
+    <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a
+            href="https://twitter.com/mdo">zumesh</a>.</p>
+    <p>
+        <a href="#">Back to top</a>
+    </p>
+</footer> -->

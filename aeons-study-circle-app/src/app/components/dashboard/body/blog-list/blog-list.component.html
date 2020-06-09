@@ -1,0 +1,126 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Confidence</h5>
+                        <p class="card-text">“Faith is a living, daring confidence in God’s grace, so sure and certain
+                            that a man could stake his life on it a thousand times.”<br><br><br></p>
+                        <blockquote class="blockquote mb-0">
+                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p> -->
+                            <footer class="blockquote-footer">Martin Luther<cite title="Source Title"></cite></footer>
+                        </blockquote>
+                        <a href="#" class="btn btn-primary">Read more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Read</h5>
+                        <p class="card-text">
+                            “Read, read, read. Read everything — trash, classics, good and bad, and see how they do it.
+                            Just like a carpenter who works as an apprentice and studies the master. Read! You’ll absorb
+                            it. Then write. If it’s good, you’ll find out. If it’s not, throw it out of the window.”</p>
+                        <blockquote class="blockquote mb-0">
+                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p> -->
+                            <footer class="blockquote-footer">William Faulkner<cite title="Source Title"></cite>
+                            </footer>
+                        </blockquote>
+                        <a href="#" class="btn btn-primary">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div> -->
+        <!-- <pagination-controls -->
+        <div class="card text-center">
+            <div class="card-header">
+                <button class="btn btn btn-primary float-left" (click)="prevPage()"
+                    [disabled]="disable_prev || !(pagination_clicked_count>0)">Previous</button>
+                <b>Page No: </b>
+                <span class="badge badge-primary badge-pill">{{pagination_clicked_count+1}}</span>
+                <button class="btn btn btn-primary float-right" (click)="nextPage()"
+                    [disabled]="disable_next">Next</button>
+            </div>
+        </div>
+
+        <!-- Blog posts starts here.... -->
+        <div class="card flex-row flex-wrap" *ngFor="let post of postsArray | paginate: config">
+            <div class="card-header">
+                <img src="{{post.imageUrl}}" width="220" height="200" alt="Blog Image">
+            </div>
+            <div class="card-block px-2 col-md-9">
+                <div class="card-body">
+                    <h5 class="card-title">{{post.title}}</h5>
+                    <!-- <p class="card-text">SUBTITLE MOVED TO FOOTER
+                    </p> -->
+                    <!-- <p class="card-text">{{post.description}}
+                    </p> -->
+
+                    <div class="card-text post-description" [innerHTML]="sanitizeTxt(post.description)"></div>
+                    <p class="card-text"><small class="text-muted">Last updated
+                            {{post.createdDate.seconds * 1000 | date:'full'}}</small></p>
+                    <blockquote class="blockquote mb-0">
+                        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p> -->
+                        <footer class="blockquote-footer">{{post.subTitle}}</footer>
+                    </blockquote>
+                    <button (click)="redirectToReadmore(post)" class="btn btn-primary">Read more</button>
+                </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="card-footer w-100 text-muted">
+                <p class="blog-post-meta">{{post.createdDate.seconds * 1000 | date:'full'}} by <a
+                        href="#">Jayakuttan</a></p>
+            </div>
+        </div>
+        <!-- Blog posts ends here.. -->
+        <!-- <pagination-controls -->
+        <div class="card text-center">
+            <div class="card-header">
+                <button class="btn btn btn-primary float-left" (click)="prevPage()"
+                    [disabled]="disable_prev || !(pagination_clicked_count>0)">Previous</button>
+                <b>Page No: </b>
+                <span class="badge badge-primary badge-pill">{{pagination_clicked_count+1}}</span>
+                <button class="btn btn btn-primary float-right" (click)="nextPage()"
+                    [disabled]="disable_next">Next</button>
+            </div>
+        </div>
+        <div class="card text-center">
+            <div class="card-header">
+                Features and Study
+            </div>
+            <div class="card-body">
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-md-4">
+                        <img src="https://drive.google.com/uc?id=128fq7-Zvugt3ViLMjP_4tWkMufvJmABV" width="200" class="card-img" alt="...">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <!-- <h5 class="card-title">Card title</h5> -->
+                          <p class="card-text"> </p>
+                          <div class="list-group">
+                            <a href="javascript:void(0);" class="list-group-item list-group-item-action">Aspiration</a>
+                            <a href="javascript:void(0);" class="list-group-item list-group-item-action list-group-item-primary">Drive</a>
+                            <a href="javascript:void(0);" class="list-group-item list-group-item-action list-group-item-secondary">Willingness to learn</a>
+                            <a href="javascript:void(0);" class="list-group-item list-group-item-action list-group-item-success">Patience</a>
+                            <a href="javascript:void(0);" class="list-group-item list-group-item-action list-group-item-danger">Discipline</a>
+                          </div>
+                           
+                          <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+            <div class="card-footer text-muted">
+                2 days ago
+            </div>
+        </div>
+    </div>
+</div>

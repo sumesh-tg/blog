@@ -1,0 +1,71 @@
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Posts List</h5>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem
+                    Ipsum is simply dummy text of the printing and typesetting industry.</p>
+
+                <table class="table">
+                    <caption>List of users</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                <div class="custom-control custom-checkbox form-group">
+                                    <!-- <input type="checkbox" class="custom-control-input" id="mail1" [(ngModel)]="selectedAllChkBox" (change)="selectAllVendors();"> -->
+                                    <label class="custom-control-label" for="mail1"></label>
+                                </div>
+                            </th>
+                            <th scope="col">logo</th>
+                            <th scope="col">Name</th>
+
+                            <th scope="col">Plan</th>
+
+                            <th scope="col">Color</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let post of postsArray">
+                            <td>
+                                <div class="custom-control custom-checkbox form-group">
+                                    <input type="checkbox" class="custom-control-input" id="{{post.id}}" [(ngModel)]="post.selected">
+                                    <label class="custom-control-label" for="{{post.id}}"></label>
+                                </div>
+                            </td>
+                            <th scope="row"><img src="" width="100"></th>
+
+                            <td>{{post.title}} <br>
+                                <!-- {{post.subTitle}}<br> -->
+                                <!-- {{post.description}}<br> -->
+                                <!-- {{post.createdDate}} -->
+                            </td>
+
+                            <td></td>
+
+                            <td><div class="p-3 mb-2 text-white"></div></td>
+                            <td>{{post.createdDate}}</td>
+                            <td>{{post.createdDate}}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Action
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <!-- <a class="dropdown-item" (click)="deactivateVendor(vendor)">Activate/De-activate</a> -->
+                                        <!-- <a class="dropdown-item"(click)="deleteVendor(vendor)">Delete</a> -->
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
