@@ -40,8 +40,30 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <label for="Editor2">Description</label>
-                            <ckeditor [(ngModel)]="postModel.description" required minlength="50" name="editor1" (change)="onChangeDescription($event)" [editor]="Editor1"  [config]="{ toolbar: [ 'heading', '|', 'bold','italic','colors','numberedList','bulletedList','undo','redo'] }" #description="ngModel"></ckeditor>
+                            <label for="editor2">Description</label>
+                            <div>
+                            <quill-editor [(ngModel)]="postModel.description" required minlength="50" name="editor2" [style]="{height: '250px'}" #description="ngModel">
+                                <div quill-editor-toolbar>
+                                    <span class="ql-formats">
+                                      <button class="ql-bold" [title]="'Bold'"></button>
+                                    </span>
+                                    <span class="ql-formats">
+                                      <select class="ql-align" [title]="'Aligment'">
+                                        <option selected></option>
+                                        <option value="center"></option>
+                                        <option value="right"></option>
+                                        <option value="justify"></option>
+                                      </select>
+                                      <select class="ql-align" [title]="'Aligment2'">
+                                        <option selected></option>
+                                        <option value="center"></option>
+                                        <option value="right"></option>
+                                        <option value="justify"></option>
+                                      </select>
+                                    </span>
+                                  </div>
+                            </quill-editor>
+                        </div>
                             <div *ngIf="postForm.submitted && description.invalid" class="invalid-feedback d-block">
                                 <div *ngIf="description.errors.required">Post description is required</div>
                                 <div *ngIf="description.errors.minlength">Minimum length 50 is required</div>
@@ -50,12 +72,14 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <label for="Editor1">Detailed Description</label>
-                            <ckeditor [(ngModel)]="postModel.detailedDescription" required minlength="50" name="editor2" (change)="onChangeDetailedDescription($event)" [editor]="Editor2" #detailedDescription="ngModel"></ckeditor>
+                        <label for="editor3">Detailed Description</label>
+                        <div>
+                        <quill-editor [(ngModel)]="postModel.detailedDescription" required minlength="50" name="editor3" [style]="{height: '250px'}"  #detailedDescription="ngModel"> </quill-editor>
                             <div *ngIf="postForm.submitted && detailedDescription.invalid" class="invalid-feedback d-block">
-                                <div *ngIf="detailedDescription.errors.required">Post description is required</div>
+                                <div *ngIf="detailedDescription.errors.required">Post detailed description is required</div>
                                 <div *ngIf="detailedDescription.errors.minlength">Minimum length 50 is required</div>
                             </div>
+                         </div>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary float-right">Submit </button>
