@@ -8,7 +8,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             <label for="inputEmail4">Title</label>
-                            <input type="text" class="form-control" id="inputEmail4" required minlength="5" placeholder="" [(ngModel)]="postModel.title" name="title" #title="ngModel">
+                            <input type="text" class="form-control" id="inputEmail4" required minlength="5" placeholder="" ng-blur="postForm.title.$validate()" [(ngModel)]="postModel.title" name="title" #title="ngModel">
                             <div *ngIf="postForm.submitted && title.invalid" class="invalid-feedback d-block">
                                 <div *ngIf="title.errors.required">Title is required</div>
                                 <div *ngIf="title.errors.minlength">Minimum length 5 is required</div>
@@ -59,6 +59,14 @@
                                         <option value="center"></option>
                                         <option value="right"></option>
                                         <option value="justify"></option>
+                                      </select>
+                                      <select class="ql-color" [title]="'color'">
+                                        <option selected></option>
+                                        <option value="red"></option>
+                                        <option value="green"></option>
+                                        <option value="yellow"></option>
+                                        <option value="pink"></option>
+                                        <option value="#5fd0a5"></option>
                                       </select>
                                     </span>
                                   </div>
