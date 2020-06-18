@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from 'src/app/services/post.service';
 import { Post } from 'src/app/models/post.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-delete-post',
@@ -10,7 +11,7 @@ import { Post } from 'src/app/models/post.model';
 export class DeletePostComponent implements OnInit {
   postsArray: Post[];
 
-  constructor(private postService: PostService) { }
+  constructor(private postService: PostService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.postService.getPosts().subscribe(posts => {
@@ -21,5 +22,9 @@ export class DeletePostComponent implements OnInit {
       });
       console.log("Firedata ::: ", this.postsArray);
     });
+  }
+  deletePost(post){
+    this.postService.deletePost(post);
+    this.toastr.success('Post deleted successfully!', 'Success');
   }
 }

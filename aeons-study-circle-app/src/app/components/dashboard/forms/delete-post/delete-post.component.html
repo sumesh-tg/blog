@@ -4,11 +4,10 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Posts List</h5>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem
-                    Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <p>You can delete posts here.</p>
 
                 <table class="table">
-                    <caption>List of users</caption>
+                    <caption>List of posts</caption>
                     <thead>
                         <tr>
                             <th scope="col">
@@ -17,12 +16,12 @@
                                     <label class="custom-control-label" for="mail1"></label>
                                 </div>
                             </th>
-                            <th scope="col">logo</th>
-                            <th scope="col">Name</th>
+                            <th scope="col">Header Image</th>
+                            <th scope="col">Title</th>
 
-                            <th scope="col">Plan</th>
+                            <th scope="col">Date</th>
 
-                            <th scope="col">Color</th>
+                            <!-- <th scope="col">Color</th> -->
                             <th scope="col">ID</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action </th>
@@ -36,7 +35,7 @@
                                     <label class="custom-control-label" for="{{post.id}}"></label>
                                 </div>
                             </td>
-                            <th scope="row"><img src="" width="100"></th>
+                            <th scope="row"><img src="{{post.imageUrl}}" width="100"></th>
 
                             <td>{{post.title}} <br>
                                 <!-- {{post.subTitle}}<br> -->
@@ -44,11 +43,11 @@
                                 <!-- {{post.createdDate}} -->
                             </td>
 
-                            <td></td>
+                            <td>{{post.createdDate.seconds * 1000 | date:'full'}}</td>
 
-                            <td><div class="p-3 mb-2 text-white"></div></td>
-                            <td>{{post.createdDate}}</td>
-                            <td>{{post.createdDate}}</td>
+                            <!-- <td><div class="p-3 mb-2 text-white"></div></td> -->
+                            <td>{{post.id}}</td>
+                            <td><span class="text-primary">Active</span></td>
                             <td>
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button"
@@ -58,7 +57,7 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <!-- <a class="dropdown-item" (click)="deactivateVendor(vendor)">Activate/De-activate</a> -->
-                                        <!-- <a class="dropdown-item"(click)="deleteVendor(vendor)">Delete</a> -->
+                                        <a class="dropdown-item"(click)="deletePost(post)">Delete</a>
                                     </div>
                                 </div>
                             </td>
