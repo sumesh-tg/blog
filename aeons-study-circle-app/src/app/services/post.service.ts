@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Post } from 'src/app/models/post.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  POST_COLLECTION_NAME = "posts";
+  POST_COLLECTION_NAME = environment.postCollectionsName;
   constructor(private firestore: AngularFirestore) { }
   getPosts() {
     return this.firestore.collection(this.POST_COLLECTION_NAME, ref => ref

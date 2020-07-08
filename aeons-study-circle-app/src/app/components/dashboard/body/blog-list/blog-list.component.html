@@ -76,7 +76,7 @@
             <div class="w-100"></div>
             <div class="card-footer w-100 text-muted">
                 <p class="blog-post-meta">{{post.createdDate.seconds * 1000 | date:'full'}} by <a
-                        href="#">Jayakuttan</a></p>
+                        href="#">Jayakuttan</a> <span class="float-right text-warning">{{post.createdDate.seconds * 1000 | timeago:'live'}}</span></p> 
             </div>
         </div>
         <!-- Blog posts ends here.. -->

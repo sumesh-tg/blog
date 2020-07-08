@@ -34,6 +34,8 @@ import { HomePageComponent } from './components/dashboard/body/home-page/home-pa
 import { ContactUsComponent } from './components/dashboard/body/contact-us/contact-us.component';
 import { DeletePostComponent } from './components/dashboard/forms/delete-post/delete-post.component';
 import { QuillModule } from 'ngx-quill';
+import { TimeagoModule } from 'ngx-timeago';
+import { PreviewComponent } from './components/dashboard/forms/add-post/preview/preview.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +57,8 @@ import { QuillModule } from 'ngx-quill';
     RightSideBarComponent,
     HomePageComponent,
     ContactUsComponent,
-    DeletePostComponent
+    DeletePostComponent,
+    PreviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,8 @@ import { QuillModule } from 'ngx-quill';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     NgxPaginationModule,
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    TimeagoModule.forRoot()
   ],
   providers: [
     ConfirmationDialogService

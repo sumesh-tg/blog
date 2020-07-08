@@ -82,7 +82,8 @@
                         <div class="form-group col-md-12">
                         <label for="editor3">Detailed Description</label>
                         <div>
-                        <quill-editor [(ngModel)]="postModel.detailedDescription" required minlength="50" name="editor3" [style]="{height: '250px'}"  #detailedDescription="ngModel"> </quill-editor>
+                        <quill-editor  [(ngModel)]="postModel.detailedDescription" required minlength="50" name="editor3" [style]="{height: '250px'}"  #detailedDescription="ngModel" > </quill-editor>
+                        <!-- [modules]="detailedDescriptionEditorModules" binding not working when put this config -->
                             <div *ngIf="postForm.submitted && detailedDescription.invalid" class="invalid-feedback d-block">
                                 <div *ngIf="detailedDescription.errors.required">Post detailed description is required</div>
                                 <div *ngIf="detailedDescription.errors.minlength">Minimum length 50 is required</div>
@@ -90,10 +91,29 @@
                          </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary float-right">Submit </button>
+                   
+                    <button type="submit" class="btn btn-primary float-right mr-3">Submit </button>
+                    <button class="btn btn-danger float-right mr-3" (click)="showPostPreview()">Preview </button>
                     <button type="submit" class="btn btn-secondary float-right mr-3">Clear</button>
                 </form>
+                <div class="custom-modal">
+                    <ng-template #postContent let-modal>
+                        <div class="modal-header">
+                          <h4 class="modal-title">Modal title</h4>
+                          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+<app-preview></app-preview>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+                        </div>
+                      </ng-template>
+                </div>
             </div>
         </div>
     </div>
 </div>
+

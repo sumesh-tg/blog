@@ -22,6 +22,7 @@ const routes: Routes = [
     {path:'add-post',component:AddPostComponent},
     {path:'blog-post',component:BlogPostComponent},
     {path:'delete-post',component:DeletePostComponent},
+    {path:'preview',component:BlogPostComponent},
     {path:'**',component:BlogListComponent}
   ]} 
 ];

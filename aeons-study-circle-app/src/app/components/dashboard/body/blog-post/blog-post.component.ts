@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Post } from 'src/app/models/post.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from 'src/app/services/post.service';
 import { DomSanitizer, SafeResourceUrl, SafeUrl, SafeHtml } from '@angular/platform-browser';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-blog-post',
@@ -13,8 +15,11 @@ export class BlogPostComponent implements OnInit {
   postModelArray: Post[];
   postModel: Post;
   html: SafeHtml;
+  timeLeft: number = 30;
+  interval;
 
-  constructor(private route: ActivatedRoute, private postService: PostService, private sanitizer: DomSanitizer) { }
+  constructor(private route: ActivatedRoute, private postService: PostService, private sanitizer: DomSanitizer,
+    private router: Router, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -35,6 +40,32 @@ export class BlogPostComponent implements OnInit {
         }
       });
     });
+    var url = this.router.url;
+    if (url.indexOf("preview") > 0) {
+      this.postModel = JSON.parse(localStorage.getItem("postModel"));
+      this.startTimer();
+
+    }
+  }
+  startTimer() {
+    this.interval = setInterval(() => {
+      if (this.timeLeft > 0) {
+        this.timeLeft--;
+        this.toastrService.clear();
+        var toastInfo = this.toastrService.error(`<p>The preview will close automatically after ${this.timeLeft} seconds...!</p>`, 'Notice!', {
+          timeOut: 40000,
+          enableHtml: true,
+          closeButton: false,
+          disableTimeOut: true,
+          tapToDismiss: false,
+          positionClass:'toast-top-right',
+          easeTime:0
+        });
+        console.log(toastInfo);
+      } else {
+        this.timeLeft = 60;
+      }
+    }, 1000);
   }
   sanitizeTxt(txt): SafeHtml {
     this.html = this.sanitizer.bypassSecurityTrustHtml(this.transform(txt));

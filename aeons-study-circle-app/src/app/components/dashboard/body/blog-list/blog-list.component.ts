@@ -4,7 +4,7 @@ import { Post } from 'src/app/models/post.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl, SafeUrl, SafeHtml } from '@angular/platform-browser';
 import { PostPagenationService } from 'src/app/services/post-pagenation.service';
-
+import { TimeagoIntl } from 'ngx-timeago';
 @Component({
   selector: 'app-blog-list',
   templateUrl: './blog-list.component.html',
