@@ -51,12 +51,13 @@ export class UploadFileToFireStorageService {
             if (url) {
               this.fb = url;
             }
-           return this.fb;
+          return this.downloadURL;
           });
         })
       ).subscribe(url => {
         if (url) {
           console.log(url);
+          return this.downloadURL;
         }
       });
     return this.downloadURL;

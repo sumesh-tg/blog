@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UploadFileToFireStorageService } from 'src/app/services/upload-file-to-fire-storage.service';
 import { NgbModalOptions, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 
 // import { ImageResize } from 'quill-image-resize-module';
@@ -24,9 +25,11 @@ import { Router } from '@angular/router';
   }
 })
 export class AddPostComponent implements OnInit {
- 
+
   // @ViewChild('detailedDescriptionEditor') detailedDescriptionEditor;
   @ViewChild('postContent') private postContent;
+  @ViewChild('postForm') public form: NgForm;
+  loading = false;
   detailedDescriptionEditorModules = {
     formula: true,
     toolbar: [
@@ -48,7 +51,7 @@ export class AddPostComponent implements OnInit {
   };
 
   public postModel: Post = {
-    createdDate: new Date(), description: "", expiryDate: new Date(),
+    createdDate: new Date(), description: "", expiryDate: null,
     id: VendorUtils.makeRandom(8), imageUrl: "", modifiedDate: new Date(), subTitle: "",
     title: "", detailedDescription: ""
   };
@@ -56,40 +59,50 @@ export class AddPostComponent implements OnInit {
   headerImage = null;
 
   constructor(private postService: PostService, private toastr: ToastrService, private uploadFileToFireStorageService: UploadFileToFireStorageService,
-    private modalService: NgbModal,private router : Router) { }
+    private modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
-    
+    //Initialize upload service
+    this.uploadFileToFireStorageService.uploadFileToFireStorage(null);
   }
   submitAddPostForm() {
-
+    this.loading = true;
     console.log("Testing new editor == :: ", this.postModel)
     this.uploadFileToFireStorageService.uploadFileToFireStorage(this.headerImage).subscribe(url => {
       console.log(url);
       this.postModel.imageUrl = url;
       this.postService.createPost(this.postModel)
       this.toastr.success('Post created successfully!', 'Success');
+      this.clearForm();
+      this.loading = false;
     });
   }
 
   handleFileInput(files: FileList) {
     this.headerImage = files.item(0);
   }
-  showPostPreview(){
-    var url=this.router.url.replace("add-post","preview");
-    localStorage.setItem("postModel",JSON.stringify(this.postModel));
-   var newWindow= window.open(url,"_blank");
-   setTimeout(function() {
-    newWindow.close();
+  showPostPreview() {
+    var url = this.router.url.replace("add-post", "preview");
+    localStorage.setItem("postModel", JSON.stringify(this.postModel));
+    var newWindow = window.open(url, "_blank");
+    setTimeout(function () {
+      newWindow.close();
     }, 30000);
-   // this.open(this.postContent);
+    // this.open(this.postContent);
   }
   open(content) {
     let options: NgbModalOptions = {
       size: 'lg',
-      centered: true ,
+      centered: true,
       backdropClass: 'backdropClass'
     };
     this.modalService.open(content, options);
- }
+  }
+  clearForm() {
+    this.postModel = {
+      createdDate: new Date(), description: "", expiryDate: null,
+      id: VendorUtils.makeRandom(8), imageUrl: "", modifiedDate: new Date(), subTitle: "",
+      title: "", detailedDescription: ""
+    };
+  }
 }

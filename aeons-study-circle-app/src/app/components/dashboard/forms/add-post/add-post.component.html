@@ -4,7 +4,7 @@
             <div class="card-body">
                 <h5 class="card-title">Create Blog Post</h5>
                 <p>Create a html rich post.</p>
-                <form name="form" #postForm="ngForm" (ngSubmit)="postForm.form.valid && submitAddPostForm()" novalidate>
+                <form name="form" #postForm="ngForm" (ngSubmit)="postForm.valid && submitAddPostForm()">
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             <label for="inputEmail4">Title</label>
@@ -92,11 +92,13 @@
                         </div>
                     </div>
                    
-                    <button type="submit" class="btn btn-primary float-right mr-3">Submit </button>
-                    <button class="btn btn-danger float-right mr-3" (click)="showPostPreview()">Preview </button>
+                    <button type="submit" class="btn btn-primary float-right mr-3" [disabled]="!postForm.valid">Submit
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>    
+                    </button>
+                    <button class="btn btn-danger float-right mr-3" (click)="showPostPreview()" [disabled]="!postForm.valid">Preview </button>
                     <button type="submit" class="btn btn-secondary float-right mr-3">Clear</button>
                 </form>
-                <div class="custom-modal">
+                <!-- <div class="custom-modal">
                     <ng-template #postContent let-modal>
                         <div class="modal-header">
                           <h4 class="modal-title">Modal title</h4>
@@ -111,7 +113,7 @@
                           <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
                         </div>
                       </ng-template>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
