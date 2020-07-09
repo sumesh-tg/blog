@@ -92,11 +92,11 @@
                         </div>
                     </div>
                    
-                    <button type="submit" class="btn btn-primary float-right mr-3" [disabled]="!postForm.valid">Submit
+                    <button type="submit" class="btn btn-primary float-right mr-3" [disabled]="!postForm.valid || loading">Submit
                         <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>    
                     </button>
                     <button class="btn btn-danger float-right mr-3" (click)="showPostPreview()" [disabled]="!postForm.valid">Preview </button>
-                    <button type="submit" class="btn btn-secondary float-right mr-3">Clear</button>
+                    <button type="submit" class="btn btn-secondary float-right mr-3" (click)="clearForm()">Clear</button>
                 </form>
                 <!-- <div class="custom-modal">
                     <ng-template #postContent let-modal>

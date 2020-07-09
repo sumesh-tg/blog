@@ -101,8 +101,8 @@ export class VendorListComponent implements OnInit {
   }
   handleFileInput(files: FileList) {
     this.blogImage = files.item(0);
-   this.uploadFileToFireStorageService.uploadFileToFireStorage(this.blogImage).subscribe(url=>{
-     console.log(url);
-   });
+  //  this.uploadFileToFireStorageService.uploadFileToFireStorage(this.blogImage).subscribe(url=>{
+  //    console.log(url);
+  //  });
   }
 }

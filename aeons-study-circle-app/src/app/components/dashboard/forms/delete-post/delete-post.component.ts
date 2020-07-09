@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from 'src/app/services/post.service';
 import { Post } from 'src/app/models/post.model';
 import { ToastrService } from 'ngx-toastr';
+import { UploadFileToFireStorageService } from 'src/app/services/upload-file-to-fire-storage.service';
 
 @Component({
   selector: 'app-delete-post',
@@ -11,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class DeletePostComponent implements OnInit {
   postsArray: Post[];
 
-  constructor(private postService: PostService,private toastr: ToastrService) { }
+  constructor(private postService: PostService,private toastr: ToastrService,private uploadFileToFireStorageService :UploadFileToFireStorageService) { }
 
   ngOnInit(): void {
     this.postService.getPosts().subscribe(posts => {
@@ -24,6 +25,7 @@ export class DeletePostComponent implements OnInit {
     });
   }
   deletePost(post){
+    this.uploadFileToFireStorageService.deleteFileUsingUrl(post.imageUrl);
     this.postService.deletePost(post);
     this.toastr.success('Post deleted successfully!', 'Success');
   }

@@ -35,7 +35,6 @@ import { ContactUsComponent } from './components/dashboard/body/contact-us/conta
 import { DeletePostComponent } from './components/dashboard/forms/delete-post/delete-post.component';
 import { QuillModule } from 'ngx-quill';
 import { TimeagoModule } from 'ngx-timeago';
-import { PreviewComponent } from './components/dashboard/forms/add-post/preview/preview.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +57,6 @@ import { PreviewComponent } from './components/dashboard/forms/add-post/preview/
     HomePageComponent,
     ContactUsComponent,
     DeletePostComponent,
-    PreviewComponent,
   ],
   imports: [
     BrowserModule,

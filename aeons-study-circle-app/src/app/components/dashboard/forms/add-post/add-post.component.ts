@@ -62,15 +62,11 @@ export class AddPostComponent implements OnInit {
     private modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
-    //Initialize upload service
-    this.uploadFileToFireStorageService.uploadFileToFireStorage(null);
   }
   submitAddPostForm() {
     this.loading = true;
-    console.log("Testing new editor == :: ", this.postModel)
-    this.uploadFileToFireStorageService.uploadFileToFireStorage(this.headerImage).subscribe(url => {
-      console.log(url);
-      this.postModel.imageUrl = url;
+    this.uploadFileToFireStorageService.uploadFileToFireStorage(this.headerImage).then(url => {
+      this.postModel.imageUrl = "" + url;
       this.postService.createPost(this.postModel)
       this.toastr.success('Post created successfully!', 'Success');
       this.clearForm();
