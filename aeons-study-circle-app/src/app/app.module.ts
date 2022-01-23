@@ -35,6 +35,7 @@ import { ContactUsComponent } from './components/dashboard/body/contact-us/conta
 import { DeletePostComponent } from './components/dashboard/forms/delete-post/delete-post.component';
 import { QuillModule } from 'ngx-quill';
 import { TimeagoModule } from 'ngx-timeago';
+import { QuizDashboardModule } from './quiz-dashboard/quiz-dashboard.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,11 +57,12 @@ import { TimeagoModule } from 'ngx-timeago';
     RightSideBarComponent,
     HomePageComponent,
     ContactUsComponent,
-    DeletePostComponent,
+    DeletePostComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    QuizDashboardModule,
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
@@ -70,7 +72,8 @@ import { TimeagoModule } from 'ngx-timeago';
     AngularFireDatabaseModule,
     NgxPaginationModule,
     QuillModule.forRoot(),
-    TimeagoModule.forRoot()
+    TimeagoModule.forRoot(),
+    
   ],
   providers: [
     ConfirmationDialogService
