@@ -5,7 +5,7 @@
     "questions": [
         {
             "id": 1010,
-            "name": "Which HTML tag do we use to put the JavaScript?",
+            "name": "ഇനിപ്പറയുന്ന കോഡിന്റെ ഔട്ട്പുട്ട് എന്തായിരിക്കും?",
             "questionTypeId": 1,
             "options": [
                 {

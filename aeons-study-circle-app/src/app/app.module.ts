@@ -36,6 +36,7 @@ import { DeletePostComponent } from './components/dashboard/forms/delete-post/de
 import { QuillModule } from 'ngx-quill';
 import { TimeagoModule } from 'ngx-timeago';
 import { QuizDashboardModule } from './quiz-dashboard/quiz-dashboard.module';
+import { AdminModule } from './admin/admin.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +64,7 @@ import { QuizDashboardModule } from './quiz-dashboard/quiz-dashboard.module';
     BrowserModule,
     AppRoutingModule,
     QuizDashboardModule,
+    AdminModule,
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,

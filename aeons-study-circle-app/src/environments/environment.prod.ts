@@ -11,5 +11,7 @@ export const environment = {
     appId: "1:694514346883:web:c87ac9af8d120100efa4b6",
     measurementId: "G-B6CVL4Y7P6"
   },
-  postCollectionsName:"posts"
+  postCollectionsName:"posts",
+  quizCategoryCollectionName:"quiz_cat",
+  quizQuestionsCollectionName:"quiz_questions"
 };
