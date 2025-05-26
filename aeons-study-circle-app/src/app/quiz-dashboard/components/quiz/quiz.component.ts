@@ -16,13 +16,15 @@ export class QuizComponent implements OnInit {
   mode = 'quiz';
   quizName: string;
   config: QuizConfig = {
+    'id': 123,
+    'name': '',
+    'description': '',
     'allowBack': true,
     'allowReview': true,
     'autoMove': false,  // if true, it will move to next question automatically when answered.
     'duration': 300,  // indicates the time (in secs) in which quiz needs to be completed. 0 means unlimited.
     'pageSize': 1,
-    'requiredAll': false,  // indicates if you must answer all the questions before submitting.
-    'richText': false,
+    'requiredAll': false,  
     'shuffleQuestions': false,
     'shuffleOptions': false,
     'showClock': false,
@@ -84,6 +86,7 @@ export class QuizComponent implements OnInit {
   }
 
   onSelect(question: Question, option: Option) {
+    option.selected = !option.selected;
     if (question.questionTypeId === 1) {
       question.options.forEach((x) => { if (x.id !== option.id) x.selected = false; });
     }
@@ -108,6 +111,13 @@ export class QuizComponent implements OnInit {
     return question.options.every(x => x.selected === x.isAnswer) ? 'correct' : 'wrong';
   };
 
+  get answeredCount(): number {
+    if (!this.quiz || !this.quiz.questions) return 0;
+    return this.quiz.questions.filter(q => this.isAnswered(q) === 'Answered').length;
+  }
+  trackByOptionId(index: number, option: any) {
+    return option.id;
+  }
   onSubmit() {
     let answers = [];
     this.quiz.questions.forEach(x => answers.push({ 'quizId': this.quiz.id, 'questionId': x.id, 'answered': x.answered }));

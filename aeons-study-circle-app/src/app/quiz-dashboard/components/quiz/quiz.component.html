@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-6">
-    <h3>Quiz Application</h3>
+    <h3>Online Test App</h3>
   </div>
   <div class="col-6 text-right">
-    Select Quiz:
+    Select Subject:
     <select [(ngModel)]="quizName" (change)="loadQuiz(quizName)">
       <option *ngFor="let quiz of quizes" [value]="quiz.id">{{quiz.name}}</option>
     </select>
@@ -17,27 +17,8 @@
     <div *ngFor="let question of filteredQuestions;">
       <div class="badge badge-info">Question {{pager.index + 1}} of {{pager.count}}.</div>
       <div *ngIf="config.duration" class="badge badge-info float-right">Time: {{ellapsedTime}} / {{duration}}</div>
-      <h3 class="font-weight-normal">{{pager.index + 1}}.
-        <span [innerHTML]="question.name"></span>
-      </h3>
-      <div class="row text-left options">
-        <div class="col-6" *ngFor="let option of question.options">
-          <div class="option">
-            <label class="font-weight-normal" [attr.for]="option.id">
-              <input id="{{option.id}}" type="checkbox" [(ngModel)]="option.selected" (change)="onSelect(question, option);" /> {{option.name}}
-            </label>
-          </div>
-        </div>
-      </div>
     </div>
     <hr />
-    <div class="text-center">
-      <button class="btn btn-default" *ngIf="config.allowBack" (click)="goTo(0);">First</button>
-      <button class="btn btn-default" *ngIf="config.allowBack" (click)="goTo(pager.index - 1);">Prev</button>
-      <button class="btn btn-primary" (click)="goTo(pager.index + 1);">Next</button>
-      <button class="btn btn-default" *ngIf="config.allowBack" (click)="goTo(pager.count - 1);">Last</button>
-      <!--<pagination *ngIf="config.showPager" direction-links="false" total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-change="pageChanged()"></pagination>-->
-    </div>
   </div>
 
   <div class="row text-center" *ngIf="mode=='review'">
@@ -46,7 +27,7 @@
     </div>
   </div>
   <div class="result" *ngIf="mode=='result'">
-    <h2>Quiz Result</h2>
+    <h2>Test Results</h2>
     <div *ngFor="let question of quiz.questions; let index = index">
       <div class="result-question">
         <h5>{{index + 1}}. {{question.name}}</h5>
@@ -60,10 +41,60 @@
     </div>
     <h4 class="alert alert-info text-center">You may close this window now.</h4>
   </div>
-  <hr />
-  <div *ngIf="mode!='result'">
-    <button class="btn btn-warning" (click)="mode = 'quiz'">Quiz</button>
-    <button class="btn btn-info" (click)="mode = 'review'">Review</button>
-    <button class="btn btn-primary" (click)="onSubmit();">Submit Quiz</button>
-  </div>
 </div>
+
+<div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="question-box" *ngIf="mode=='quiz' && quiz">
+          <div *ngFor="let question of filteredQuestions;">
+            <h4>Question {{pager.index + 1}} of {{pager.count}}.</h4>
+            <span>{{pager.index + 1}}.</span>
+            <p [innerHTML]="question.name"></p>
+            <div class="d-grid gap-2" *ngFor="let option of question.options; trackBy: trackByOptionId">
+              <button type="button" class="btn btn-ans btn-outline-secondary w-100 mb-2" [class.selected]="option.selected"
+                id="{{option.id}}" (click)="onSelect(question, option)">
+                <span class="tick-icon" *ngIf="option.selected">&#10003;</span>
+                {{ option.name }}
+              </button>
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+              <div>
+                <button class="btn btn-light" *ngIf="config.allowBack" (click)="goTo(0);">First</button>
+                <button class="btn btn-default" *ngIf="config.allowBack" (click)="goTo(pager.index - 1);">Prev</button>
+              </div>
+              <div class="ml-auto">
+                <button class="btn btn-primary" (click)="goTo(pager.index + 1);">Next</button>
+                <button class="btn btn-light" *ngIf="config.allowBack" (click)="goTo(pager.count - 1);">Last</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="border-top pt-3" *ngIf="mode=='qquiz' && quiz">
+          <strong>Explanation</strong><br>
+          A train passes a station platform in 36 seconds and a man standing on the platform in 20 seconds. If the speed of the train is 54 km/hr, what is the length of the platform?
+        </div>
+        <div *ngIf="mode!='result'">
+          <button class="btn btn-warning mr-2" (click)="mode = 'quiz'">Quiz</button>
+          <button class="btn btn-info mr-2" (click)="mode = 'review'">Review</button>
+          <button class="btn btn-primary" (click)="onSubmit();">Submit Quiz</button>
+        </div>
+      </div>
+      <div class="col-md-3" *ngIf="mode=='quiz' && quiz">
+        <div class="mb-2">
+          <strong>
+            Answered: {{ answeredCount }} / {{ quiz.questions.length }}
+          </strong>
+        </div>
+        <div class="mb-2"><strong>Need Help ?</strong></div>
+        <div class="question-map row">
+          <div class="col-3 mb-2" *ngFor="let question of quiz.questions; let index = index;">
+            <button (click)="goTo(index)"
+              class="p-3 w-100 {{ isAnswered(question) == 'Answered'? 'btn btn-primary': 'btn btn-secondary disabled' }}">
+              {{index + 1}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
