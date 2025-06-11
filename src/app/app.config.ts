@@ -8,11 +8,13 @@ import { environment } from 'environments/environment';
 import { routes } from './app.routes';
 import { quizRoutes } from './quiz-dashboard/quiz-dashboard-routing.module';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { adminRoutes } from './admin/admin-routing.module';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter([...routes, ...quizRoutes]),
+    provideRouter([...routes, ...quizRoutes,...adminRoutes]),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
     provideAnimationsAsync(),

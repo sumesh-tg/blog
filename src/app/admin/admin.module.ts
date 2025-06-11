@@ -10,10 +10,10 @@ import { AddQuestionsComponent } from './components/forms/add-questions/add-ques
 
 
 @NgModule({
-  declarations: [AdminHomeComponent, AdSidebarComponent, AdFooterComponent, AdBodyComponent, AddQuestionsComponent],
+  declarations: [],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule, AdminHomeComponent, AdSidebarComponent, AdFooterComponent, AdBodyComponent, AddQuestionsComponent
   ]
 })
 export class AdminModule { }

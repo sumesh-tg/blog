@@ -14,9 +14,9 @@
   <hr />
 
   <div *ngIf="mode=='quiz' && quiz">
-    <div *ngFor="let question of filteredQuestions;">
-      <div class="badge badge-info">Question {{pager.index + 1}} of {{pager.count}}.</div>
-      <div *ngIf="config.duration" class="badge badge-info float-right">Time: {{ellapsedTime}} / {{duration}}</div>
+    <div *ngFor="let question of filteredQuestions;" class="d-flex justify-content-between align-items-center mb-3">
+      <div class="badge badge-info m-2">Question {{pager.index + 1}} of {{pager.count}}.</div>
+      <div *ngIf="config.duration" class="badge badge-info m-2">{{ellapsedTime}} / {{duration}}</div>
     </div>
     <hr />
   </div>
@@ -74,7 +74,7 @@
           <strong>Explanation</strong><br>
           A train passes a station platform in 36 seconds and a man standing on the platform in 20 seconds. If the speed of the train is 54 km/hr, what is the length of the platform?
         </div>
-        <div *ngIf="mode!='result'">
+        <div *ngIf="mode!='result'" class="d-flex gap-2">
           <button class="btn btn-warning mr-2" (click)="mode = 'quiz'">Quiz</button>
           <button class="btn btn-info mr-2" (click)="mode = 'review'">Review</button>
           <button class="btn btn-primary" (click)="onSubmit();">Submit Quiz</button>
