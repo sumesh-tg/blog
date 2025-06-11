@@ -1,0 +1,12 @@
+/* Example styles for collapsed sidebar */
+.sidebar-collapsed {
+  width: 60px !important;
+  transition: width 0.2s;
+}
+.page-sidebar-inner {
+  width: 220px;
+  transition: width 0.2s;
+}
+.sidebar-collapsed .accordion-menu li a span {
+  display: none;
+}

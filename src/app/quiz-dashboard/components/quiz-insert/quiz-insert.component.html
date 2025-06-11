@@ -1,0 +1,59 @@
+<div class="container">
+  <h2>Add New Online Test</h2>
+  <div class="form-group">
+    <label>Test Name</label>
+    <select class="form-control" [(ngModel)]="quizData.name">
+      <option *ngFor="let quiz of quizNames" [value]="quiz">{{quiz}}</option>
+    </select>
+  </div>
+  <button class="btn btn-success mr-3" (click)="addQuestion()">Add Question</button>
+
+  <div *ngFor="let question of quizData.questions; let qIdx = index" class="card mb-3">
+    <div class="card-body">
+      <div class="form-group">
+        <label>Question {{qIdx + 1}}</label>
+        <input class="form-control" [(ngModel)]="question.name" />
+      </div>
+      <div class="form-group">
+        <label>Explanation</label>
+        <input class="form-control" [(ngModel)]="question.explanation" />
+      </div>
+      <div *ngFor="let option of question.options; let oIdx = index" class="form-group">
+        <label>Option {{oIdx + 1}}</label>
+        <input class="form-control d-inline w-75" [(ngModel)]="option.name" />
+        <input type="radio"
+               [name]="'correctOption' + qIdx"
+               [value]="oIdx"
+               [(ngModel)]="question.correctOption"
+               (change)="setCorrectOption(question, oIdx)"> Correct
+      </div>
+      <button class="btn btn-secondary btn-sm" (click)="addOption(question)">Add Option</button>
+    </div>
+  </div>
+  <button class="btn btn-primary" (click)="saveQuiz()">Save Test</button>
+
+  <!-- Display test name and questions in a table -->
+  <div class="mt-4">
+    <h4>Test Preview</h4>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Test Name</th>
+          <th>Question</th>
+          <th>Explanation</th>
+          <th>Answer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let question of quizData.questions">
+          <td>{{ quizData.name }}</td>
+          <td>{{ question.name }}</td>
+          <td>{{ question.explanation }}</td>
+          <td>
+            {{ getAnswerString(question) }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

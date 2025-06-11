@@ -1,0 +1,79 @@
+<div class="row" id="vendorCreation">
+    <div class="col-xl">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Create Vendor</h5>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <form name="form" #vendorForm="ngForm" (ngSubmit)="vendorForm.form.valid && submitAddVendorForm()" novalidate>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4">Name</label>
+                            <input type="text" class="form-control" id="inputEmail4" required minlength="4" placeholder="" [(ngModel)]="vendorModel.name" name="name" #name="ngModel">
+                            <div *ngIf="vendorForm.submitted && name.invalid" class="invalid-feedback d-block">
+                                <div *ngIf="name.errors.required">Name is required</div>
+                                <div *ngIf="name.errors.minlength">Minimum length 4 is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4">Phone</label>
+                            <input type="text" class="form-control" id="inputEmail4" placeholder="" [(ngModel)]="vendorModel.phone" name="phone" #phone="ngModel" required>
+                            <div *ngIf="vendorForm.submitted && phone.invalid" class="invalid-feedback d-block">
+                                <div *ngIf="phone.errors.required">Phone number is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4">Email</label>
+                            <input type="email" class="form-control" id="inputEmail4" placeholder="" [(ngModel)]="vendorModel.email" name="email" #email="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                            <div *ngIf="vendorForm.submitted && email.invalid" class="invalid-feedback d-block">
+                                <div *ngIf="email.errors.required">Email is required</div>
+                                <div *ngIf="email.errors.pattern">invalid email id</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4">Plan</label>
+                            <select id="inputState" class="form-control custom-select" [(ngModel)]="vendorModel.planId" name="planId" #planId="ngModel" required>
+                                <option selected="">Choose...</option>
+                                <option *ngFor="let plan of getPlansArray()" [value]="plan.id">{{plan.name}}</option>
+                            </select>
+                            <div *ngIf="vendorForm.submitted && planId.invalid" class="invalid-feedback d-block">
+                                <div *ngIf="planId.errors.required">Plan is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4">Website URL</label>
+                            <input type="email" class="form-control" id="inputEmail4" placeholder="" [(ngModel)]="vendorModel.websiteUrl" name="websiteUrl" #websiteUrl="ngModel" required>
+                            <div *ngIf="vendorForm.submitted && websiteUrl.invalid" class="invalid-feedback d-block">
+                                <div *ngIf="websiteUrl.errors.required">Website URL is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4">Uniqe ID</label>
+                            <input type="email" class="form-control" id="inputEmail4" disabled="disabled" placeholder=""  [(ngModel)]="vendorModel.uniqueKey" name="uniqueKey" #uniqueKey="ngModel" required>
+                            <div *ngIf="vendorForm.submitted && uniqueKey.invalid" class="invalid-feedback d-block">
+                                <div *ngIf="uniqueKey.errors.required">UniqueKey is required</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4">Upload Logo</label>
+                            <input type="File" class="form-control" id="inputEmail4" (change)="handleFileInput($event.target.files)"  [(ngModel)]="vendorModel.logoImg"  placeholder="" name="logoImg" #logoImg="ngModel"  required>
+                            <div *ngIf="vendorForm.submitted && logoImg.invalid" class="invalid-feedback d-block">
+                                <div *ngIf="logoImg.errors.required">Logo is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4">Choose theme Color</label>
+                            <input type="color" class="form-control" id="inputEmail4" placeholder="" [(ngModel)]="vendorModel.themeColor" name="themeColor" #themeColor="ngModel" required>
+                            <div *ngIf="vendorForm.submitted && themeColor.invalid" class="invalid-feedback d-block">
+                                <div *ngIf="themeColor.errors.required">Theme color is required</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <button  class="btn btn-primary float-right">Submit </button>
+                    <button  type="button" (click)="resetAddVendorForm()" class="btn btn-secondary float-right mr-3">Clear</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

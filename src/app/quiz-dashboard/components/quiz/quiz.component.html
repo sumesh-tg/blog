@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="col-6">
+    <h3>Online Test App</h3>
+  </div>
+  <div class="col-6 text-right">
+    Select Subject:
+    <select [(ngModel)]="quizName" (change)="loadQuiz(quizName)">
+      <option *ngFor="let quiz of quizes" [value]="quiz.id">{{quiz.name}}</option>
+    </select>
+  </div>
+</div>
+<div id="quiz">
+  <h2 class="text-center font-weight-normal">{{quiz.name}}</h2>
+  <hr />
+
+  <div *ngIf="mode=='quiz' && quiz">
+    <div *ngFor="let question of filteredQuestions;">
+      <div class="badge badge-info">Question {{pager.index + 1}} of {{pager.count}}.</div>
+      <div *ngIf="config.duration" class="badge badge-info float-right">Time: {{ellapsedTime}} / {{duration}}</div>
+    </div>
+    <hr />
+  </div>
+
+  <div class="row text-center" *ngIf="mode=='review'">
+    <div class="col-4 cursor-pointer" *ngFor="let question of quiz.questions; let index = index;">
+      <div (click)="goTo(index)" class="p-3 mb-2 {{ isAnswered(question) == 'Answered'? 'bg-info': 'bg-warning' }}">{{index + 1}}. {{ isAnswered(question) }}</div>
+    </div>
+  </div>
+  <div class="result" *ngIf="mode=='result'">
+    <h2>Test Results</h2>
+    <div *ngFor="let question of quiz.questions; let index = index">
+      <div class="result-question">
+        <h5>{{index + 1}}. {{question.name}}</h5>
+        <div class="row">
+          <div class="col-6" *ngFor="let Option of question.options">
+            <input id="{{Option.id}}" type="checkbox" disabled="disabled" [(ngModel)]="Option.selected" /> {{Option.name}}
+          </div>
+        </div>
+        <div class="p-1 m-2 alert {{ isCorrect(question) == 'correct'? 'alert-success': 'alert-danger'}}">Your answer is {{isCorrect(question)}}.</div>
+      </div>
+    </div>
+    <h4 class="alert alert-info text-center">You may close this window now.</h4>
+  </div>
+</div>
+
+<div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="question-box" *ngIf="mode=='quiz' && quiz">
+          <div *ngFor="let question of filteredQuestions;">
+            <h4>Question {{pager.index + 1}} of {{pager.count}}.</h4>
+            <span>{{pager.index + 1}}.</span>
+            <p [innerHTML]="question.name"></p>
+            <div class="d-grid gap-2" *ngFor="let option of question.options; trackBy: trackByOptionId">
+              <button type="button" class="btn btn-ans btn-outline-secondary w-100 mb-2" [class.selected]="option.selected"
+                id="{{option.id}}" (click)="onSelect(question, option)">
+                <span class="tick-icon" *ngIf="option.selected">&#10003;</span>
+                {{ option.name }}
+              </button>
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+              <div>
+                <button class="btn btn-light" *ngIf="config.allowBack" (click)="goTo(0);">First</button>
+                <button class="btn btn-default" *ngIf="config.allowBack" (click)="goTo(pager.index - 1);">Prev</button>
+              </div>
+              <div class="ml-auto">
+                <button class="btn btn-primary" (click)="goTo(pager.index + 1);">Next</button>
+                <button class="btn btn-light" *ngIf="config.allowBack" (click)="goTo(pager.count - 1);">Last</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="border-top pt-3" *ngIf="mode=='qquiz' && quiz">
+          <strong>Explanation</strong><br>
+          A train passes a station platform in 36 seconds and a man standing on the platform in 20 seconds. If the speed of the train is 54 km/hr, what is the length of the platform?
+        </div>
+        <div *ngIf="mode!='result'">
+          <button class="btn btn-warning mr-2" (click)="mode = 'quiz'">Quiz</button>
+          <button class="btn btn-info mr-2" (click)="mode = 'review'">Review</button>
+          <button class="btn btn-primary" (click)="onSubmit();">Submit Quiz</button>
+        </div>
+      </div>
+      <div class="col-md-3" *ngIf="mode=='quiz' && quiz">
+        <div class="mb-2">
+          <strong>
+            Answered: {{ answeredCount }} / {{ quiz.questions.length }}
+          </strong>
+        </div>
+        <div class="mb-2"><strong>Need Help ?</strong></div>
+        <div class="question-map row">
+          <div class="col-3 mb-2" *ngFor="let question of quiz.questions; let index = index;">
+            <button (click)="goTo(index)"
+              class="p-3 w-100 {{ isAnswered(question) == 'Answered'? 'btn btn-primary': 'btn btn-secondary disabled' }}">
+              {{index + 1}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

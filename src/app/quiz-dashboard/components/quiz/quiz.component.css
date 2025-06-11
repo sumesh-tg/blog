@@ -1,0 +1,55 @@
+ .question-box {
+     border: 2px solid #d2d2ff;
+     border-radius: 10px;
+     padding: 20px;
+     margin-bottom: 20px;
+ }
+
+.question-map .btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 5px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+ .question-map .active {
+     background-color: #f88;
+ }
+
+ .question-map .disabled {
+     background-color: #ddd;
+     pointer-events: none;
+ }
+
+ .btn-ans {
+     display: flex;
+     align-items: center;
+     justify-content: flex-start;
+     text-align: left;
+ }
+
+ .btn.selected,
+ .btn.selected:focus {
+     background-color: #28a745 !important;
+     color: #fff !important;
+     border-color: #218838 !important;
+ }
+
+ .tick-icon {
+     font-size: 2rem;
+     margin-right: 1rem;
+     color: #fff;
+     background: #218838;
+     border-radius: 50%;
+     width: 2.2rem;
+     height: 2.2rem;
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+ }

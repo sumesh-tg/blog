@@ -1,0 +1,31 @@
+<div class="page-sidebar">
+    <div class="logo-box">
+        <a href="#" class="logo-text">Aeon's Study Circle</a>
+        <a href="javascript:void(0);" #sidebarClose id="sidebar-close">
+            <i class="material-icons">close</i>
+        </a>
+        <a href="javascript:void(0);" id="sidebar-state" (click)="toggleSidebar()">
+            <i class="material-icons">adjust</i>
+            <i class="material-icons compact-sidebar-icon">panorama_fish_eye</i>
+        </a>
+    </div>
+    <div class="page-sidebar-inner slimscroll">
+        <ul class="accordion-menu">
+            <li class="sidebar-title">
+                Apps
+            </li>
+            <li routerLinkActive="active-page">
+                <a routerLink="/dashboard/home"><i class="material-icons-outlined">home</i>Home</a>
+            </li>
+            <li routerLinkActive="active-page">
+                <a routerLink="/dashboard/blog"><i class="material-icons-outlined">chat_bubble</i>Blog</a>
+            </li>
+            <li routerLinkActive="active-page">
+                <a routerLink="/dashboard/contact-us"><i class="material-icons-outlined">mail</i>Contact Us</a>
+            </li>
+            <li routerLinkActive="active-page">
+                <a routerLink="/quiz"><i class="material-icons-outlined">quiz</i>Online Test</a>
+            </li>
+        </ul>
+    </div>
+</div>
