@@ -17,7 +17,8 @@ export const environment = {
   },
   postCollectionsName:"test_posts",
   quizCategoryCollectionName:"test_quiz_cat",
-  quizQuestionsCollectionName:"test_quiz_questions"
+  quizQuestionsCollectionName:"test_quiz_questions",
+  enableOnlineTest: true,
 };
 
 /*

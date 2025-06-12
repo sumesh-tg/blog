@@ -1,15 +1,20 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { environment } from 'environments/environment';
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
-  imports: [RouterModule],
+  imports: [RouterModule,CommonModule],
 })
 export class SidebarComponent implements OnInit {
-isCollapsed = false;
-  constructor(private route:ActivatedRoute,private router:Router) { }
+  isCollapsed = false;
+  enableOnlineTest = environment.enableOnlineTest;
+
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
   }

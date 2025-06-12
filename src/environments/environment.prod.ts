@@ -13,5 +13,6 @@ export const environment = {
   },
   postCollectionsName:"posts",
   quizCategoryCollectionName:"quiz_cat",
-  quizQuestionsCollectionName:"quiz_questions"
+  quizQuestionsCollectionName:"quiz_questions",
+  enableOnlineTest: false,
 };

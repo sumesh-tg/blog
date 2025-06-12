@@ -23,7 +23,7 @@
             <li routerLinkActive="active-page">
                 <a routerLink="/dashboard/contact-us"><i class="material-icons-outlined">mail</i>Contact Us</a>
             </li>
-            <li routerLinkActive="active-page">
+            <li routerLinkActive="active-page" *ngIf="enableOnlineTest==true">
                 <a routerLink="/quiz"><i class="material-icons-outlined">quiz</i>Online Test</a>
             </li>
         </ul>
